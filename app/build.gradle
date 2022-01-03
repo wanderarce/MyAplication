@@ -1,0 +1,57 @@
+/**Disponibiliza o plugin do Android para o Gradle*/
+plugins {
+    id 'com.android.application'
+}
+
+/** Configuracoes do seu aplicativo android*/
+android {
+    compileSdk 31 // Versao de API do android para compilacao
+
+    defaultConfig {
+        applicationId "br.com.wanderarce.myapplication" // package do projeto
+        minSdk 21 // Define o nível mínimo de API necessário para executar o aplicativo.
+        targetSdk 31 //Especifica o nível de API usado para testar o aplicativo.
+        versionCode 1 //Define o número da versão do seu aplicativo.
+        versionName "1.0" //Define um nome de versão amigável para o seu aplicativo.
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    / **
+     * Permite configurar vários tipos de construção.
+     * Por padrão, o sistema de compilação define dois tipos de compilação: depuração e liberação. a
+     * o tipo de compilação de depuração não é mostrado explicitamente na configuração de compilação padrão,
+     * mas inclui ferramentas de depuração e é assinado com a chave de depuração. O lançamento
+     * tipo de construção aplica-se às configurações do Proguard e não é assinado por padrão.
+     * /
+    buildTypes {
+        release {
+            minifyEnabled false // Ativa quanto true a redução de código para o tipo
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+/ **
+ * O bloco de dependências no arquivo de configuração de construção de nível de módulo
+ * especifica as dependências necessárias para construir apenas o próprio módulo.
+ * Para saber mais, vá para Adicionar dependências de compilação.
+ * /
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'io.github.medyo:android-about-page:2.0.0'
+}
